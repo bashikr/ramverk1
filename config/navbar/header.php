@@ -48,5 +48,24 @@ return [
             "url" => "verktyg",
             "title" => "Verktyg och möjligheter för utveckling.",
         ],
+        [
+            "text" => "IP",
+            "url" => "ipValidate",
+            "title" => "Tjänst för validering av IP-adresser",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Ip validator with text response",
+                        "url" => "ipValidate",
+                        "title" => "Ip validator with text response",
+                    ],
+                    [
+                        "text" => "Ip validator with JSON response",
+                        "url" => "ipToJson",
+                        "title" => "Ip validator with JSON response",
+                    ],
+                ],
+            ],
+        ],
     ],
 ];
