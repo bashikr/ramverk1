@@ -6,7 +6,7 @@ return [
     "routes" => [
         [
             "info" => "IP validator with json response",
-            "mount" => "ipToJson",
+            "mount" => "ip-to-json",
             "handler" => "\Bashar\IpValidator\JsonIpValidatorController",
         ],
     ]

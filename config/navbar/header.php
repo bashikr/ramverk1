@@ -50,18 +50,18 @@ return [
         ],
         [
             "text" => "IP",
-            "url" => "ipValidate",
+            "url" => "ip-validate",
             "title" => "Tjänst för validering av IP-adresser",
             "submenu" => [
                 "items" => [
                     [
                         "text" => "Ip validator with text response",
-                        "url" => "ipValidate",
+                        "url" => "ip-validate",
                         "title" => "Ip validator with text response",
                     ],
                     [
                         "text" => "Ip validator with JSON response",
-                        "url" => "ipToJson",
+                        "url" => "ip-to-json",
                         "title" => "Ip validator with JSON response",
                     ],
                 ],

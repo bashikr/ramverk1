@@ -21,11 +21,11 @@ namespace Bashar\ipValidate;
     </form>
     <div style="  display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 300px;column-gap: 10px;">
         <div style="grid-column-start: 3;">
-            <form action="ipToJson" method="POST">
+            <form action="ip-to-json" method="POST">
                 <input name="ip" type="hidden" value="127.0.0.1">
                 <input type="submit" value="Test IP 1">
             </form><br>
-            <form action="ipToJson" method="POST">
+            <form action="ip-to-json" method="POST">
                 <input name="ip" type="hidden" value="194.47.150.9">
                 <input type="submit" value="Test IP 2">
             </form>

@@ -6,7 +6,7 @@ return [
     "routes" => [
         [
             "info" => "IP validator",
-            "mount" => "ipValidate",
+            "mount" => "ip-validate",
             "handler" => "\Bashar\IpValidator\IpValidatorController",
         ],
     ]
