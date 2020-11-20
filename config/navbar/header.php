@@ -67,5 +67,24 @@ return [
                 ],
             ],
         ],
+        [
+            "text" => "GEO IP",
+            "url" => "geo-ip-normal",
+            "title" => "A service for presentation of Geo Location via IP-address",
+            "submenu" => [
+                "items" => [
+                    [
+                        "text" => "Geo Location with text response",
+                        "url" => "geo-ip-normal",
+                        "title" => "Geo Location with text response",
+                    ],
+                    [
+                        "text" => "Geo Location with JSON response",
+                        "url" => "geo-ip-json",
+                        "title" => "Ip validator with JSON response",
+                    ],
+                ],
+            ],
+        ],
     ],
 ];

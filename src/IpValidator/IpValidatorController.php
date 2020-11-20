@@ -19,7 +19,7 @@ class IpValidatorController implements ContainerInjectableInterface
     use ContainerInjectableTrait;
 
     /**
-     * @var string 
+     * @var string
      */
     private $enteredIp;
     private $ipValidatorClass;

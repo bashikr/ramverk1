@@ -4,3 +4,4 @@
 memory::
 composer.lock
 /.git
+/config/geoToken.php

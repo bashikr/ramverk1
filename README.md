@@ -12,3 +12,9 @@ are tested in test/ipValidatorTestSuite.
 Increasing the test cases of the IP-controller. Writing assignment1 for this week.
 
 ***
+
+
+#### Version 2.0.0
+A new IP-address API service has been added to get detailed information about a given ip address. Furthermore, It is possible to se the IP address's position on the map.
+
+***
