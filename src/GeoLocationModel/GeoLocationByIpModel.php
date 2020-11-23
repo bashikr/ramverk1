@@ -23,6 +23,7 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
      */
     private $message = "127.0.0.1";
     private $apiResult;
+    private $geoApi;
 
 
     /**
@@ -34,6 +35,7 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
         return $this->message;
     }
 
+
     /**
      * Sets the api from the config file
      * into the controller.
@@ -44,8 +46,58 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
         $this->message = $message;
     }
 
+
+    /**
+     * Sets the api from the config file
+     * into the controller.
+     *
+     */
+    public function setGeoApi($enteredIp) : void
+    {
+        $this->geoApi = "http://api.ipstack.com/". $enteredIp . "?access_key=" . $this->message .'&hostname=1&security=1';
+    }
+
+
+    /**
+     * returns the api from the config file "ipstackcfg"
+     *
+     */
+    public function getGeoApi()
+    {
+        return $this->geoApi;
+    }
+
+
     /**
      * Gets the Geo Location info in
+     * Gets the Geo Location info in
+     * an array
+     *
+     */
+    public function doCurl($geoApi) : string
+    {
+        // create & initialize a curl session
+        $curl = curl_init();
+        
+        // set our url with curl_setopt()
+        curl_setopt($curl, CURLOPT_URL, $geoApi);
+        
+        // return the transfer as a string, also with setopt()
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        
+        // curl_exec() executes the started curl session
+        // $output contains the output string
+        $output = curl_exec($curl);
+        
+        // close curl resource to free up system resources
+        // (deletes the variable made by curl_init)
+        curl_close($curl);
+        
+        return $output;
+    }
+
+
+    /**
      * a json format
      *
      */
@@ -69,6 +121,7 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
         return $string;
     }
 
+
     /**
      * Gets the Geo Location info in
      * an array
@@ -76,23 +129,8 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
      */
     public function getGeoLocationNormal($enteredIp)
     {
-        // create & initialize a curl session
-        $curl = curl_init();
-        $geoApi = "http://api.ipstack.com/". $enteredIp . "?access_key=" . $this->message .'&hostname=1&security=1';
-
-        // set our url with curl_setopt()
-        curl_setopt($curl, CURLOPT_URL, $geoApi);
-
-        // return the transfer as a string, also with setopt()
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-        // curl_exec() executes the started curl session
-        // $output contains the output string
-        $output = curl_exec($curl);
-        
-        // close curl resource to free up system resources
-        // (deletes the variable made by curl_init)
-        curl_close($curl);
+        $this->setGeoApi($enteredIp);
+        $output = $this->doCurl($this->geoApi);
 
         $apiResult = json_decode($output, true);
         $this->apiResult = $apiResult;
