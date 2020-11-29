@@ -57,6 +57,22 @@ class GeoLocationByIpModelTest extends TestCase
     }
 
     /**
+     * Test getDetails
+     */
+    public function testGetGeoApi()
+    {
+        $this->controller->setMessage("test");
+        $this->controller->setGeoApi("100.47.150.9");
+        $res =  $this->controller->getGeoApi();
+
+
+        $this->assertStringContainsString(
+            "http://api.ipstack.com/100.47.150.9?access_key=test&hostname=1&security=1",
+            $res
+        );
+    }
+
+    /**
      * Test getGeoLocationNormal()
      */
     public function testGetGeoLocationNormal()

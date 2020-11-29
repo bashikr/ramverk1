@@ -1,6 +1,6 @@
 <?php
 
-namespace Bashar\GeoLocationModel;
+namespace Bashar\WeatherModel;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
@@ -14,7 +14,7 @@ use Anax\Commons\ContainerInjectableTrait;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class GeoLocationByIpModel implements ContainerInjectableInterface
+class OpenWeatherMapModel implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -22,8 +22,8 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
      * @var string
      */
     private $message = "127.0.0.1";
-    private $apiResult;
-    private $geoApi;
+    private $weatherApiPrevious = [];
+    private $weatherApiNext;
 
 
     /**
@@ -52,9 +52,9 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
      * into the controller.
      *
      */
-    public function setGeoApi($enteredIp) : void
+    public function setGeoApi($enteredIp, $geoApi) : void
     {
-        $this->geoApi = "http://api.ipstack.com/". $enteredIp . "?access_key=" . $this->message .
+        $this->geoApiUrl = "http://api.ipstack.com/". $enteredIp . "?access_key=" . $geoApi .
         '&hostname=1&security=1';
     }
 
@@ -63,48 +63,51 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
      * returns the api from the config file "ipstackcfg"
      *
      */
-    public function getGeoApi()
+    public function getGeoApiUrl()
     {
-        return $this->geoApi;
+        return $this->geoApiUrl;
     }
 
 
     /**
-     * Gets the Geo Location info in
-     * Gets the Geo Location info in
-     * an array
+     * Sets the api from the config file
+     * into the controller.
      *
      */
-    public function doCurl($geoApi) : string
+    public function setWeatherApi5PreviousDays($geoUrlLat, $geoUrlLon) : void
     {
-        // create & initialize a curl session
-        $curl = curl_init();
-        
-        // set our url with curl_setopt()
-        curl_setopt($curl, CURLOPT_URL, $geoApi);
-        
-        // return the transfer as a string, also with setopt()
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        
-        // curl_exec() executes the started curl session
-        // $output contains the output string
-        $output = curl_exec($curl);
-        
-        // close curl resource to free up system resources
-        // (deletes the variable made by curl_init)
-        curl_close($curl);
-        
-        return $output;
+        $options = '&exclude=minutely,hourly,alerts&units=metric&lang=en';
+        $baseUrl = 'http://api.openweathermap.org/data/2.5/onecall/timemachine?';
+        for ($i = -5; $i <= -1; $i++) {
+            $datePrevious = strtotime("$i days");
+            array_push($this->weatherApiPrevious, $baseUrl . 'lat=' . $geoUrlLat . '&lon=' .
+                $geoUrlLon . '&dt=' . $datePrevious . $options . '&appid=' . $this->message);
+        }
     }
 
 
     /**
+     * Sets the api from the config file
+     * into the controller.
+     *
+     */
+    public function setWeatherApiNext10Days($geoUrlLat, $geoUrlLon) : void
+    {
+        $options = '&exclude=current,minutely,hourly,alerts&units=metric&lang=en';
+        $baseUrl = 'https://api.openweathermap.org/data/2.5/onecall?';
+
+        $this->weatherApiNext = $baseUrl . 'lat=' . $geoUrlLat . '&lon=' .
+            $geoUrlLon . $options .  '&appid=' . $this->message;
+    }
+
+
+        /**
      * a json format
      *
      */
-    public function getGeoLocationJson()
+    public function getWeatherInJson($weatherApi)
     {
-        $encoded = json_encode($this->apiResult, true);
+        $encoded = json_encode($weatherApi, true);
         $pattern1 = "/\"{/i";
         $first = preg_replace($pattern1, "{", $encoded);
         $pattern2 = "/[\]]$/i";
@@ -122,19 +125,22 @@ class GeoLocationByIpModel implements ContainerInjectableInterface
         return $string;
     }
 
-
     /**
-     * Gets the Geo Location info in
-     * an array
+     * returns the api from the config file "openWeatherMap"
      *
      */
-    public function getGeoLocationNormal($enteredIp)
+    public function getWeatherApiPrevious()
     {
-        $this->setGeoApi($enteredIp);
-        $output = $this->doCurl($this->geoApi);
+        return $this->weatherApiPrevious;
+    }
 
-        $apiResult = json_decode($output, true);
-        $this->apiResult = $apiResult;
-        return $this->apiResult;
+
+    /**
+     * returns the api from the config file "openWeatherMap"
+     *
+     */
+    public function getWeatherApiNext()
+    {
+        return $this->weatherApiNext;
     }
 }

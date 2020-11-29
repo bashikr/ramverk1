@@ -13,8 +13,12 @@ Increasing the test cases of the IP-controller. Writing assignment1 for this wee
 
 ***
 
-
 #### Version 2.0.0
 A new IP-address API service has been added to get detailed information about a given ip address. Furthermore, It is possible to see the IP address's position on the map.
+
+***
+
+#### Version 3.0.0
+OpenWeatherMap API service has been added to get detailed information about both weather history & forecast by a given ip address. Furthermore, It is possible to see the IP address's position on the map and a JSON object.
 
 ***

@@ -24,7 +24,9 @@ namespace Bashar\ipValidate;
 (GEO LOCATION WITH TEXT RESPONSE), a (/geo-ip-normal) will be added to the URL.</p>
 <p>- After submitting the input form with a proper IP-Address a query string (?ip=) will be added to the URL
 in addition to your entered input.</p>
-<strong>OBS! This api does not support giving information about Ipv6. However, it will validate IP:es of the version 6.</strong>
+<strong>
+    OBS! This api does not support giving information about Ipv6. However, it will validate IP:es of the version 6.
+</strong>
 
 </div>
 <div style="text-align: left; background:#333; padding: 20px 50px;border-radius:5px; color: white;margin-bottom:20px;">

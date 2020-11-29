@@ -5551,6 +5551,7 @@ hr::after {
   /* background-color: #E5EAFE; */
   color: black;
   /* box-shadow: 0 0 10px black; */
+
 }
 .region-main.has-sidebar {
   border: 2px solid none;
@@ -5559,6 +5560,121 @@ hr::after {
 .region-main.has-sidebar article {
   border: 0;
 }
+
+
+
+.region-main .weather-day-previous {
+  padding: 1rem 1rem 2rem;
+  margin: .5rem .5rem 2rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+}
+
+.region-main .weather-previous {
+  text-align: center;
+}
+
+.region-main .col3-wrapper-previous {
+  clear: both;
+}
+
+.region-main .region-columns-above .col5, .region-columns-below .col5 {
+  display: inline;
+  float: left;
+}
+
+.region-main .weather-header-previous {
+  font-size: 2rem;
+  word-spacing: 4rem;
+  margin-bottom: 20px;
+  padding:30px;
+  font-weight:bold;
+  color: #e43f5a;
+  background-color: #162447;
+}
+
+.region-main .weather-date-previous {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0 0 .5rem;
+  word-spacing: 5.5rem;
+  margin-bottom: 20px;
+}
+
+.region-main .weather-icon-previous {
+  margin-bottom: -24px;
+  word-spacing: 4rem;
+}
+
+.region-main .weather-temperature-previous {
+  font-size: 2.5rem;
+  word-spacing: 5.7rem;
+  margin-bottom: 20px;
+}
+
+.region-main .weather-status-previous {
+  font-size: 1.5rem;
+  word-spacing: 4.6rem;
+}
+
+
+.region-main .weather-day-next {
+  padding: 1rem 1rem 2rem;
+  margin: .5rem .5rem 2rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 5px;
+}
+
+.region-main .weather-next {
+  text-align: center;
+}
+
+.region-main .col3-wrapper-next {
+  clear: both;
+}
+
+.region-main .region-columns-above .col5, .region-columns-below .col5 {
+  display: inline;
+  float: left;
+}
+
+.region-main .weather-header-next {
+  font-size: 2rem;
+  word-spacing: 4rem;
+  margin-bottom: 20px;
+  padding:30px;
+  font-weight:bold;
+  color: #e43f5a;
+  background-color: #162447;
+}
+
+.region-main .weather-date-next {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0 0 .5rem;
+  word-spacing: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.region-main .weather-icon-next {
+  margin-bottom: -24px;
+  word-spacing: 1rem;
+}
+
+.region-main .weather-temperature-next {
+  font-size: 2.5rem;
+  word-spacing: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.region-main .weather-status-next {
+  font-size: 1.5rem;
+  word-spacing: 2rem;
+}
+
+
 .region-main.has-sidebar-left article {
   margin-top: 0;
 }
