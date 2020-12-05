@@ -95,10 +95,10 @@ class WeatherIpController implements ContainerInjectableInterface
         $enteredIp = $this->enteredIp;
         $getIpAddress = $_SERVER['REMOTE_ADDR'] ?? null;
         $geoData = $this->geoData;
-        $lat = $geoData["latitude"] ?? null;
-        $lon = $geoData["longitude"] ?? null;
+        $lati = $geoData["latitude"] ?? null;
+        $long = $geoData["longitude"] ?? null;
 
-        $this->openWeatherMapModel->setWeatherApi5PreviousDays($lat, $lon);
+        $this->openWeatherMapModel->setWeatherApi5PreviousDays($lati, $long);
         $this->weatherUrlPrevious = $this->openWeatherMapModel->getWeatherApiPrevious();
         $weatherUrlPrevious = $this->weatherUrlPrevious;
 
@@ -170,11 +170,11 @@ class WeatherIpController implements ContainerInjectableInterface
         $enteredIp = $this->enteredIp;
         $getIpAddress = $_SERVER['REMOTE_ADDR'] ?? null;
         $geoData = $this->geoData;
-        $lat = $geoData["latitude"] ?? null;
-        $lon = $geoData["longitude"] ?? null;
+        $lati = $geoData["latitude"] ?? null;
+        $long = $geoData["longitude"] ?? null;
         $ipValidationResult = $this->ipValidationResult;
 
-        $this->openWeatherMapModel->setWeatherApiNext10Days($lat, $lon);
+        $this->openWeatherMapModel->setWeatherApiNext10Days($lati, $long);
         $this->weatherUrlNext = $this->openWeatherMapModel->getWeatherApiNext();
         $weatherUrlNext = $this->weatherUrlNext;
 
