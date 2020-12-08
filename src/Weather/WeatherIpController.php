@@ -1,6 +1,6 @@
 <?php
 
-namespace Bashar\IpValidator\Weather;
+namespace Bashar\Weather;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;

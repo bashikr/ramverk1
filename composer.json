@@ -8,11 +8,12 @@
         "psr-4": {
                     "Anax\\": "src/",
                     "Bashar\\": "src/"
-                 }
+                }
     },
     "require": {
         "anax/anax-ramverk1-me": "^1.0.0",
-        "anax/remserver": "^2.1"
+        "anax/remserver": "^2.1",
+        "bashikr/weather-module": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7"

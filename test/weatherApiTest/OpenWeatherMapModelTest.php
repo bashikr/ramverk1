@@ -2,6 +2,7 @@
 
 namespace Bashar\WeatherModel;
 
+use Anax\DI\DIMagic;
 use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
 
@@ -22,20 +23,12 @@ class OpenWeatherMapModelTest extends TestCase
     {
         global $di;
 
-        // Setup di
-        $this->di = new DIFactoryConfig();
-        $this->di->loadServices(ANAX_INSTALL_PATH . "/config/di");
-
-        // Use a different cache dir for unit test
-        $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
-
-        // Set the mock as a service into $di (overwrite the exiting service)
-        $di->setShared("openWeatherMap", "\Bashar\WeatherModel\OpenWeatherMapModel");
-        $di = $this->di;
+        $di = new DIMagic();
+        $di->loadServices("config/di");
 
         // Setup OpenWeatherMapModel
         $this->controller = new OpenWeatherMapModel();
-        $this->controller->setDI($this->di);
+        // $this->controller->setDI($di);
     }
 
     /**
@@ -71,15 +64,15 @@ class OpenWeatherMapModelTest extends TestCase
 
     public function testGetGeoApiUrl() : void
     {
-        global $di;
+        // global $di;
 
-        // Set the mock as a service into $di (overwrite the exiting service)
-        $di->setShared("ipstackcfg", "\Bashar\GeoLocationModel\GeoLocationByIpModel");
-        $di = $this->di;
+        // // Set the mock as a service into $di (overwrite the exiting service)
+        // $di->setShared("ipstackcfg", "\Bashar\GeoLocationModel\GeoLocationByIpModel");
+        // $di = $this->di;
 
         // Setup GeoLocationByIpModel
         $this->geoApi= new \Bashar\GeoLocationModel\GeoLocationByIpModel();
-        $this->geoApi->setDI($this->di);
+        // $this->geoApi->setDI($this->di);
 
         $this->geoApi->setMessage("test");
         $geoApi =  $this->geoApi->getDetails();

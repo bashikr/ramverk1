@@ -1,89 +1,66 @@
 <?php
-
-namespace Bashar\IpValidator\Weather;
+namespace Bashar\Weather;
 
 use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
-use Anax\DI\DIMagic;
-use Anax\Response\ResponseUtility;
 
 /**
  * Testclass.
  */
 class WeatherIpControllerTest extends TestCase
 {
+    protected $di;
+    protected $weatherControllerMock;
 
-    protected $weatherController;
-    protected $enteredIp;
-    protected $geoApi;
 
     /**
      * Prepare before each test.
      */
-    protected function setUp() : void
+    protected function setUp()
     {
-        // Init service container $di to contain $app as a service
         global $di;
-        global $weatherController;
-
-        $this->di = new DIMagic();
 
         // Setup di
-        $this->di = new DIFactoryConfig();
-        $this->di->loadServices(ANAX_INSTALL_PATH . "/config/di");
+        $di = new DIFactoryConfig();
+        $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
 
         // Use a different cache dir for unit test
         $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
 
+        $this->di = $di;
 
         // Setup WeatherIpController
-        $this->weatherController = new \Bashar\IpValidator\Weather\WeatherIpController();
-        $this->weatherController->setDI($this->di);
-        $this->weatherController->initialize();
+        $this->weatherControllerMock = new WeatherIpController();
+        $this->weatherControllerMock->setDI($this->di);
+        $this->weatherControllerMock->initialize();
     }
 
-
     /**
-     * Test setMessage
+     * Test indexAction
      */
     public function testIndexAction()
     {
-        $res = $this->weatherController->indexAction();
+        $res = $this->weatherControllerMock->indexAction();
         $this->assertInternalType("object", $res);
-        $this->assertInstanceOf(ResponseUtility::class, $res);
     }
 
 
     /**
-     * Test setMessage
+     * Test previousAction
      */
     public function testPreviousAction()
     {
-        global $di;
-
-        $request = $di->get("request");
-        $request->setGet("ip", "100.47.150.9");
-
-        $res = $this->weatherController->previousAction();
-
+        $res = $this->weatherControllerMock->previousAction();
         $this->assertInternalType("object", $res);
-        $this->assertInstanceOf(ResponseUtility::class, $res);
     }
 
 
     /**
-     * Test setMessage
+     * Test nextAction
      */
     public function testNextAction()
     {
-        global $di;
-
-        $request = $di->get("request");
-        $request->setGet("ip", "100.47.150.9");
-
-        $res = $this->weatherController->nextAction();
-
+        $res = $this->weatherControllerMock->nextAction();
         $this->assertInternalType("object", $res);
-        $this->assertInstanceOf(ResponseUtility::class, $res);
     }
 }

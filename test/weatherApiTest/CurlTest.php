@@ -2,6 +2,7 @@
 
 namespace Bashar\WeatherModel;
 
+use Anax\DI\DIMagic;
 use Anax\DI\DIFactoryConfig;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CurlTest extends TestCase
 {
-
     protected $curl;
     protected $enteredIp;
     protected $geoApi;
@@ -22,19 +22,11 @@ class CurlTest extends TestCase
     {
         global $di;
 
-        // Setup di
-        $this->di = new DIFactoryConfig();
-        $this->di->loadServices(ANAX_INSTALL_PATH . "/config/di");
+        $di = new DIMagic();
+        $di->loadServices("config/di");
 
-        // Use a different cache dir for unit test
-        $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
-
-        // Set the mock as a service into $di (overwrite the exiting service)
-        $di->setShared("openWeatherMap", "\Bashar\WeatherModel\Curl");
-        $di = $this->di;
-
-        // Setup OpenWeatherMapModel
         $this->curl = new Curl();
+        // $this->curl->setDi($di);
     }
 
 

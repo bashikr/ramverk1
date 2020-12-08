@@ -7,7 +7,7 @@ return [
         [
             "info" => "WEATHER IP",
             "mount" => "ip-weather",
-            "handler" => "\Bashar\IpValidator\Weather\WeatherIpController",
+            "handler" => "\Bashar\Weather\WeatherIpController",
         ],
     ]
 ];
