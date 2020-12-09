@@ -58,12 +58,12 @@ class Curl
 
         // Add all curl handlers and remember them
         // Initiate the multi curl handler
-        $mh = curl_multi_init();
+        $multiCurl = curl_multi_init();
         $chAll = [];
         foreach ($urls as $url) {
             $ch = curl_init("$url");
             curl_setopt_array($ch, $options);
-            curl_multi_add_handle($mh, $ch);
+            curl_multi_add_handle($multiCurl, $ch);
             $chAll[] = $ch;
         }
 
@@ -71,14 +71,14 @@ class Curl
         // and continue when all are complete
         $running = null;
         do {
-            curl_multi_exec($mh, $running);
+            curl_multi_exec($multiCurl, $running);
         } while ($running);
 
         // Close the handles
         foreach ($chAll as $ch) {
-            curl_multi_remove_handle($mh, $ch);
+            curl_multi_remove_handle($multiCurl, $ch);
         }
-        curl_multi_close($mh);
+        curl_multi_close($multiCurl);
 
         // All of our requests are done, we can now access the results
         $response = [];

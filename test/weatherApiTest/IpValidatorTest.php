@@ -10,9 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 class IpValidatorTest extends TestCase
 {
-
     private $controller;
-
 
     /**
      * SetUp
@@ -45,5 +43,4 @@ class IpValidatorTest extends TestCase
         $res2 = $this->controller->validateIpInput($testIPv4);
         $this->assertTrue($res2);
     }
-
 }

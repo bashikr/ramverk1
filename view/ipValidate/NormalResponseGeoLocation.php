@@ -36,11 +36,9 @@ in addition to your entered input.</p>
 <?php if (isset($_GET["ip"])) : ?>
     <div hidden><?= include 'map.php'; ?></div>
     <div><?= $ipValidationResult ?></div>
-    <?php if ($ipValidationResult == 'The IP-address ' .
+    <?php if ($ipValidationResult == ('The IP-address ' .
         '<p style="color:#69a542; font-weight: 900;">' . $enteredIp . '</p>' .
-        ' is a valid IPv4 IP-address.') :
-    ?>
-
+        ' is a valid IPv4 IP-address.')) : ?>
     <table style="width:100%; margin:20px auto; border:2px solid #333;">
         <thead style="background:#333; color:white;">
             <tr>

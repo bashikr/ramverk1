@@ -35,7 +35,6 @@ class JsonIpValidatorControllerTest extends TestCase
         $this->ipValidatorClass = new IpValidator();
         $this->enteredIp = "127.0.0.1";
         $this->controller->setDI($this->di);
-
     }
 
     /**

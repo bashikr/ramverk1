@@ -1,5 +1,4 @@
 <?php
-
 namespace Bashar\WeatherModel;
 
 use Anax\Commons\ContainerInjectableInterface;
