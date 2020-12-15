@@ -112,5 +112,10 @@ return [
             "url" => "ip-weather",
             "title" => "WEATHER IP.",
         ],
+        [
+            "text" => "Book",
+            "url" => "book",
+            "title" => "Book service.",
+        ],
     ],
 ];

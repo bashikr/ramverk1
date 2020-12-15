@@ -6,3 +6,4 @@ composer.lock
 /.git
 /config/geoToken.php
 /config/OpnWrMpToken.php
+/config/database.php

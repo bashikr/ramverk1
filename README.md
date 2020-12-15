@@ -2,6 +2,10 @@
 
 Ramverk1 i.e. (Framework 1) is a course in advanced OOP PHP. The course uses a framework called (ANAX) which is made by prof. Mikael Ros.
 
+
+#### Version 6.0.0
+Integrated a book-example by using MySQL according to the Active Record pattern inside ANAX framework.
+
 #### Version 5.1.0
 Continued working my Anax\weather-module. I applied a (Continous Integration) technique on it with help of many good tools like Scrutinizer, Travis CI, CircleCI and GitLab. You can Check it [here](https://github.com/bashikr/weather-module).
 
