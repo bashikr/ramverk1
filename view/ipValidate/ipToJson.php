@@ -29,6 +29,11 @@ namespace Bashar\ipValidate;
                 <input name="ip" type="hidden" value="194.47.150.9">
                 <input type="submit" value="Test IP 2">
             </form>
+
+            <form action="json-ip" method="GET">
+                <input name="ip" type="hidden" value="194.47.150.9">
+                <input type="submit" value="Test IP 2">
+            </form>
         </div>
         <div style= "grid-column-start: 1; grid-column-end: 3; grid-row-start: -1; grid-row-end: 2;">
             <?php

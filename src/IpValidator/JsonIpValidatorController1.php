@@ -14,7 +14,7 @@ use Anax\Commons\ContainerInjectableTrait;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class JsonIpValidatorController extends IpValidator implements ContainerInjectableInterface
+class JsonIpValidatorController1 extends IpValidator implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -32,44 +32,17 @@ class JsonIpValidatorController extends IpValidator implements ContainerInjectab
      *
      * @return string
      */
-    public function indexAction() : object
+    public function indexAction() : array
     {
         $title = "IP validator with JSON response";
         $page = $this->di->get("page");
         $request = $this->di->get("request");
-        $this->enteredIp = $request->getPost("ip");
+        $this->enteredIp = $request->getGet("ip");
         $this->ipValidatorClass = new IpValidator();
         $json = $this->ipToJson($this->enteredIp, $this->ipValidatorClass);
         $data['json'] = $json;
 
-        $page->add("ipValidate/ipToJson", $data);
-        return $page->render([
-            "title" => $title,
-        ]);
-    }
-
-    /**
-     * This is the index method action, it handles:
-     * ANY METHOD mountPoint
-     * ANY METHOD mountPoint/
-     * ANY METHOD mountPoint/index
-     *
-     * @return string
-     */
-    public function jsonIpAction() : object
-    {
-        $title = "IP validator with JSON response";
-        $page = $this->di->get("page");
-        $request = $this->di->get("request");
-        $this->enteredIp = $request->getPost("ip");
-        $this->ipValidatorClass = new IpValidator();
-        $json = $this->ipToJson($this->enteredIp, $this->ipValidatorClass);
-        $data['json'] = $json;
-
-        $page->add("ipValidate/jsonIp", $data);
-        return $page->render([
-            "title" => $title,
-        ]);
+        return $data['json'];
     }
 
         /**
